@@ -1,237 +1,247 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nuka Spa | 酵素浴サロン</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>酵素浴 Nuka Spa</title>
+  <meta name="description" content="米ぬか100%酵素浴。人工的な熱を使わず、米糠と酵素の自然発酵熱で温まる温浴法。デトックス・代謝・免疫・自律神経・腸活・冷え・肌荒れ・妊活・更年期など、美容と健康の“土台”を整えます。">
   <style>
-    body {
-      margin: 0;
-      font-family: "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
-      background-color: #faf4ef;
-      color: #333;
-      line-height: 1.7;
+    :root{
+      --bg:#f9f2ea;      /* 薄いベージュ */
+      --card:#ffffff;
+      --ink:#2b2b2b;
+      --sub:#6b6b6b;
+      --brand:#b88c4a;   /* さりげないゴールド */
+      --accent:#efe4d4;
+      --radius:16px;
+      --shadow:0 10px 26px rgba(0,0,0,.08);
     }
-    h1, h2, h3 {
-      color: #5b3a1a;
-      font-weight: 600;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;line-height:1.7}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:10;background:rgba(249,242,234,.85);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #eadfce}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .logo{font-weight:700;letter-spacing:.06em}
+    .logo b{color:var(--brand)}
+    .nav a{margin-left:18px;color:#5b4a2e}
+    .btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;padding:12px 18px;border-radius:999px;border:1px solid var(--brand);min-width:160px;font-weight:600;background:var(--brand);color:#fff}
+    .btn.ghost{background:transparent;color:#fff;border-color:#fff}
+    .muted{color:var(--sub)}
+    .card{background:var(--card);border:1px solid #eee;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .kvs{display:grid;gap:10px}
+    .kvs .kv{display:flex;justify-content:space-between;gap:10px}
+    h1{font-size:clamp(28px,4vw,40px);margin:0}
+    h2{font-size:clamp(22px,3vw,30px);margin:0 0 12px}
+    h3{font-size:clamp(18px,2.6vw,22px);margin:0 0 8px}
+    section{padding:36px 0}
+
+    /* HERO（画像だけ。テキスト見出しは下の #about に移動） */
+    .hero{position:relative;min-height:74vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
+    .hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.85)} /* ←明るめに */
+    .hero .inner{position:relative;z-index:1;padding:24px}
+    .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+    .icon{display:inline-block;vertical-align:middle;width:1.1em;height:1.1em}
+
+    /* 説明セクション */
+    .lead{background:linear-gradient(180deg,#fffaf5,transparent);border:1px solid #efeadf}
+    .lead p{margin:.4em 0}
+
+    /* インスタ風モザイク */
+    .mosaic{display:grid;gap:12px}
+    @media(min-width:860px){
+      .mosaic{
+        grid-template-areas:
+          "a a b"
+          "a a c"
+          "d e e"
+          "f f f";
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .ph-a{grid-area:a}
+      .ph-b{grid-area:b}
+      .ph-c{grid-area:c}
+      .ph-d{grid-area:d}
+      .ph-e{grid-area:e}
+      .ph-f{grid-area:f}
+      .mosaic img{height:100%;width:100%;object-fit:cover;border-radius:14px}
+      .ph-a{min-height:520px}
+      .ph-b,.ph-c{min-height:250px}
+      .ph-d{min-height:260px}
+      .ph-e{min-height:260px}
+      .ph-f{min-height:280px}
     }
-    header {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
+    @media(max-width:859.9px){
+      .mosaic{grid-template-columns:repeat(2,1fr)}
+      .mosaic img{aspect-ratio:1/1;width:100%;object-fit:cover;border-radius:14px}
     }
-    header img.bg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.85);
-    }
-    .content {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      text-align: center;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
-    }
-    .hero-text h1 {
-      font-size: clamp(28px, 5vw, 48px);
-      margin-bottom: 10px;
-    }
-    .buttons {
-      margin-top: 20px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #b88c4a;
-      color: #fff;
-      padding: 12px 22px;
-      margin: 6px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #fff;
-      color: #fff;
-    }
-    /* セクション */
-    section {
-      padding: 60px 20px;
-    }
-    .about {
-      background: #faf4ef;
-      text-align: center;
-    }
-    .about p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 16px;
-    }
-    /* ギャラリー */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      grid-auto-rows: 250px;
-      gap: 10px;
-    }
-    .gallery img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-    }
+
     /* メニュー */
-    .menu {
-      background: #fff;
-      border-radius: 12px;
-      padding: 30px;
-      max-width: 800px;
-      margin: auto;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-    .menu h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .menu dl {
-      margin: 0;
-    }
-    .menu dt {
-      float: left;
-      clear: left;
-      width: 70%;
-      padding: 8px 0;
-      border-bottom: 1px dotted #aaa;
-    }
-    .menu dd {
-      float: right;
-      width: 25%;
-      text-align: right;
-      padding: 8px 0;
-      border-bottom: 1px dotted #aaa;
-    }
-    .menu::after {
-      content: "";
-      display: block;
-      clear: both;
-    }
-    .note {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #666;
-    }
+    .menu table{width:100%;border-collapse:collapse}
+    .menu th,.menu td{padding:12px;border-bottom:1px dashed #e5dccb;text-align:left}
+    .strike{position:relative}
+    .strike::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:#c96a6a;opacity:.7;transform:rotate(-6deg)}
+    .note{font-size:13px;color:#6a5a43}
+
+    /* イベント */
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{padding:10px;border-bottom:1px solid #eee;text-align:left}
+
     /* フッター */
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: #faf4ef;
-    }
-    footer .sns a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin: 10px;
-      padding: 10px 20px;
-      border: 2px solid #b88c4a;
-      border-radius: 30px;
-      text-decoration: none;
-      color: #5b3a1a;
-      font-weight: bold;
-    }
-    footer .sns a i {
-      font-size: 20px;
-    }
+    footer{padding:40px 0;background:linear-gradient(180deg,#fff8ef,#f7efe3)}
+    .sns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .sns a{display:inline-flex;align-items:center;gap:8px;border:1px solid #e7dcc9;border-radius:999px;background:#fff;padding:10px 14px}
   </style>
 </head>
 <body>
-
-  <!-- Hero -->
   <header>
-    <img src="top.JPG" alt="Nuka Spa" class="bg">
-    <div class="hero-text">
-      <p>“深く温まる”リラックス体験を、静かな個室空間で。</p>
-      <div class="buttons">
-        <a href="https://lin.ee/mfeC8A4z" class="btn"><i class="fab fa-line"></i> LINEで予約</a>
-        <a href="tel:080-4760-4569" class="btn btn-outline">電話する 080-4760-4569</a>
-      </div>
+    <div class="wrap nav">
+      <div class="logo">酵素浴 <b>Nuka Spa</b></div>
+      <nav>
+        <a href="#about">ご案内</a>
+        <a href="#photos">写真</a>
+        <a href="#menu">メニュー</a>
+        <a href="#event">イベント</a>
+        <a href="#access">アクセス</a>
+      </nav>
     </div>
   </header>
 
-  <!-- About -->
-  <section class="about">
-    <h1>深部温活 × 発酵菌</h1>
-    <p>
-      米ぬか100%酵素浴施設♨️<br>
-      人工的な熱を一切使わず米糠と酵素の自然発酵熱で入って頂く温浴法です。<br>
-      デトックス・代謝・免疫・自律神経・腸活・冷え・肌荒れ・妊活・更年期など<br>
-      美容と健康の土台を整える自然療法です。<br>
-      「身体」「腸」「心」すべて整え内側からキレイと元氣を呼び戻し、人間本来の力を引き出してくれます✨️<br>
-      アメニティや紙ブラ、紙パンツ等もご用意しておりますので手ぶらでお気軽にお越しくださいませ。
-    </p>
-  </section>
-
-  <!-- Gallery -->
-  <section>
-    <div class="gallery">
-      <img src="hand.JPG" alt="米ぬか">
-      <img src="nuka.JPG" alt="酵素浴槽">
-      <img src="pack.JPG" alt="フェイシャルパック">
-      <img src="room.JPG" alt="待合スペース">
-      <img src="sample.JPG" alt="ハーブとクレイ">
-      <img src="woman.png" alt="施術風景">
+  <!-- HERO（写真のみ表示。見出しは下の #about に） -->
+  <section class="hero">
+    <img class="bg" src="./top.JPG" alt="米ぬか100%酵素浴のキービジュアル">
+    <div class="inner">
+      <div class="cta">
+        <a class="btn" href="https://lin.ee/mfeC8A4z" target="_blank" rel="noopener">
+          <!-- LINE SVG -->
+          <svg class="icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="#06C755" d="M18 4C9.72 4 3 9.6 3 16.6c0 5 3.5 9.28 8.56 11.18-.12.4-.77 2.56-.8 2.75 0 0-.02.16.08.22.1.06.2.01.2.01.26-.04 3.02-1.98 3.5-2.32.98.14 1.98.22 3.02.22 8.28 0 15-5.6 15-12.6S26.28 4 18 4Z"/><path fill="#fff" d="M11.9 13.3h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Z"/></svg>
+          <span>LINEで予約</span>
+        </a>
+        <a class="btn ghost" href="tel:08047604569">電話する 080-4760-4569</a>
+      </div>
     </div>
   </section>
 
-  <!-- Menu -->
-  <section>
-    <div class="menu">
-      <h2>Menu</h2>
-      <dl>
-        <dt>酵素浴 初回</dt><dd>¥4,000</dd>
-        <dt>酵素浴 1回</dt><dd>¥4,800</dd>
-        <dt>ペア割</dt><dd>¥8,000</dd>
-        <dt>5回券 <s>¥24,000</s></dt><dd>¥19,000</dd>
-        <dt>10回券 <s>¥48,000</s></dt><dd>¥35,000</dd>
-        <dt>クレイパック</dt><dd>¥5,000</dd>
-        <dt>酵素浴＋クレイパック</dt><dd>¥9,500</dd>
-      </dl>
-      <p class="note">回数券ご購入の方はクレイパック ¥3,850</p>
-      <p class="note">クレイとは古来から人間や動物が治療目的で使用していた「最古の薬」。毛穴汚れ・鎮静・ミネラル補給・デトックスの効果でお肌ツルツルに✨</p>
+  <!-- ご案内（ヒーローの直下に見出し＋説明文） -->
+  <section id="about">
+    <div class="wrap">
+      <h1 style="margin:0 0 12px;">深部温活 × 発酵菌</h1>
+      <div class="card lead">
+        <p><b>米ぬか100%酵素浴施設♨️</b></p>
+        <p>人工的な熱を一切使わず米糠と酵素の自然発酵熱で入って頂く温浴法です。</p>
+        <p>デトックス・代謝・免疫・自律神経・腸活・冷え・肌荒れ・妊活・更年期など美容と健康の“土台”を整える自然療法です。</p>
+        <p>「身体」「腸」「心」すべて整え、内側からキレイと元氣を呼び戻し、人間本来の力を引き出してくれます✨️</p>
+        <p>アメニティや紙ブラ、紙パンツ等もご用意しておりますので、手ぶらでお気軽にお越しくださいませ。</p>
+      </div>
     </div>
   </section>
 
-  <!-- Event -->
-  <section>
-    <div class="content">
-      <h2>イベント　YOGA × 酵素浴</h2>
-      <p>午前の部 10:00〜 / 午後の部 14:00〜（各4名限定）<br>
-         料金 ¥4,000<br>
-         持ち物：ヨガマット・飲み物・タオル<br>
-         アメニティ完備（シャンプー・リンス・ドライヤーなど）
-      </p>
+  <!-- 写真（見出しは表示しない） -->
+  <section id="photos">
+    <div class="wrap">
+      <div class="mosaic">
+        <img class="ph-a" src="./hand.JPG"   alt="米ぬかを手ですくう様子">
+        <img class="ph-b" src="./nuka.JPG"   alt="酵素浴槽の全景">
+        <img class="ph-c" src="./pack.JPG"   alt="フェイシャルのクレイパック">
+        <img class="ph-d" src="./room.JPG"   alt="待合スペースの雰囲気">
+        <img class="ph-e" src="./sample.JPG" alt="ハーブとクレイの道具">
+        <img class="ph-f" src="./woman.png"  alt="施術の様子">
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- メニュー（文字で掲載） -->
+  <section id="menu">
+    <div class="wrap">
+      <div class="card menu">
+        <h2>Menu</h2>
+        <table>
+          <tr><th>酵素浴 初回</th><td>¥4,000</td></tr>
+          <tr><th>酵素浴 1回</th><td>¥4,800</td></tr>
+          <tr><th>ペア割</th><td>¥8,000</td></tr>
+          <tr>
+            <th>5回券</th>
+            <td><span class="strike">¥24,000</span> → <b>¥19,000</b> <span class="note">（¥3,800/1回）</span></td>
+          </tr>
+          <tr>
+            <th>10回券</th>
+            <td><span class="strike">¥48,000</span> → <b>¥35,000</b> <span class="note">（¥3,500/1回）</span></td>
+          </tr>
+          <tr><th>クレイパック</th><td>¥5,000</td></tr>
+          <tr><th>酵素浴＋クレイパック</th><td>¥9,500</td></tr>
+          <tr>
+            <th>回数券ご購入の方</th>
+            <td>クレイパック <b>¥3,850</b></td>
+          </tr>
+        </table>
+        <div class="note" style="margin-top:12px">
+          クレイとは古来から人間や動物が治療目的で使用していた「最古の薬」。毛穴汚れ・鎮静・ミネラル補給・デトックスの効果でお肌をなめらかに。<br>
+          当店では北海道で発掘された希少価値の高い鉱石“シリカブラック”を独自配合した天然クレイを使用。酵素浴の間にもお肌に塗布させて頂きます。ぜひ一度お試しください。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- イベント -->
+  <section id="event">
+    <div class="wrap">
+      <div class="card">
+        <h2>イベント　YOGA × 酵素浴</h2>
+        <table class="table">
+          <tr><th>時間</th><td>午前の部 10:00〜 / 午後の部 14:00〜</td></tr>
+          <tr><th>定員</th><td>各回 4名限定</td></tr>
+          <tr><th>料金</th><td>¥4,000（税込）</td></tr>
+          <tr><th>持ち物</th><td>ヨガマット・飲み物・タオル</td></tr>
+          <tr><th>アメニティ</th><td>スキンケア・シャンプー・コンディショナー・メイク落としシート・ドライヤー など</td></tr>
+        </table>
+        <p class="note">開催日・予約状況はLINEまたはお電話でお問い合わせください。</p>
+        <div class="cta">
+          <a class="btn" href="https://lin.ee/mfeC8A4z" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="#06C755" d="M18 4C9.72 4 3 9.6 3 16.6c0 5 3.5 9.28 8.56 11.18-.12.4-.77 2.56-.8 2.75 0 0-.02.16.08.22.1.06.2.01.2.01.26-.04 3.02-1.98 3.5-2.32.98.14 1.98.22 3.02.22 8.28 0 15-5.6 15-12.6S26.28 4 18 4Z"/><path fill="#fff" d="M11.9 13.3h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Z"/></svg>
+            <span>LINEで予約</span>
+          </a>
+          <a class="btn ghost" href="tel:08047604569">電話で問い合わせ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- アクセス & SNS -->
+  <section id="access">
+    <div class="wrap">
+      <div class="card">
+        <h2>アクセス・お問い合わせ</h2>
+        <div class="kvs">
+          <div class="kv"><span>電話</span><a href="tel:08047604569">080-4760-4569</a></div>
+          <div class="kv"><span>住所</span><span>〒615-0094 京都府京都市右京区山ノ内北ノ口町10-24</span></div>
+          <div class="kv"><span>アクセス</span><span>JR太秦天神川駅 徒歩10分 / 嵐電 山ノ内駅 すぐ</span></div>
+        </div>
+        <p style="margin-top:10px;">
+          <a class="btn" style="background:#fff;color:#5a4a2e;border-color:#bfb39f" target="_blank" rel="noopener"
+             href="https://maps.google.com/?q=京都府京都市右京区山ノ内北ノ口町10-24">Googleマップを開く</a>
+        </p>
+        <div class="sns" style="margin-top:16px;">
+          <a href="https://lin.ee/mfeC8A4z" target="_blank" rel="noopener" aria-label="LINE">
+            <svg class="icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="#06C755" d="M18 4C9.72 4 3 9.6 3 16.6c0 5 3.5 9.28 8.56 11.18-.12.4-.77 2.56-.8 2.75 0 0-.02.16.08.22.1.06.2.01.2.01.26-.04 3.02-1.98 3.5-2.32.98.14 1.98.22 3.02.22 8.28 0 15-5.6 15-12.6S26.28 4 18 4Z"/><path fill="#fff" d="M11.9 13.3h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Zm4.3 0h1.9v7.3h-1.9v-7.3Z"/></svg>
+            <span>LINE</span>
+          </a>
+          <a href="https://www.instagram.com/nukaspa.kousoyoku?igsh=ZGx1aDlmam45YXNr&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">
+            <!-- Instagram SVG（アイコン＋文字で“空欄回避”） -->
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E1306C" d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.4.4.6.2 1 .4 1.5.9.4.4.7.9.9 1.5.2.5.4 1.2.4 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.4-.2.6-.4 1-.9 1.5-.4.4-.9.7-1.5.9-.5.2-1.2.4-2.4.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.4-.4-.6-.2-1-.4-1.5-.9-.4-.4-.7-.9-.9-1.5-.2-.5-.4-1.2-.4-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.4.2-.6.4-1 .9-1.5.4-.4.9-.7 1.5-.9.5-.2 1.2-.4 2.4-.4C8.4 2.2 8.8 2.2 12 2.2m0 2.2c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-2 .3-.5.2-.8.4-1.1.8-.3.3-.6.7-.7 1.1-.1.4-.3 1-.3 2-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.3 2 .1.4.4.8.7 1.1.3.3.7.6 1.1.7.4.1 1 .3 2 .3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1 0 1.6-.2 2-.3.4-.1.8-.4 1.1-.7.3-.3.6-.7.7-1.1.1-.4.3-1 .3-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.3-2-.1-.4-.4-.8-.7-1.1-.3-.3-.7-.6-1.1-.8-.4-.1-1-.3-2-.3-1.2-.1-1.6-.1-4.7-.1Zm0 2.3a5.3 5.3 0 1 1 0 10.6A5.3 5.3 0 0 1 12 6.7Zm0 2.2a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.4-2.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/></svg>
+            <span>Instagram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
-    <div class="sns">
-      <a href="https://lin.ee/mfeC8A4z" target="_blank"><i class="fab fa-line"></i> LINE</a>
-      <a href="https://www.instagram.com/nukaspa.kousoyoku?igsh=ZGx1aDlmam45YXNr&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <div class="wrap" style="text-align:center">
+      <div class="logo">酵素浴 <b>Nuka Spa</b></div>
+      <p class="muted">やさしい発酵のぬくもりを、あなたの日常に。</p>
+      <p class="note">© <span id="y"></span> Nuka Spa</p>
     </div>
-    <p>&copy; 2025 Nuka Spa</p>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
   </footer>
-
 </body>
 </html>
