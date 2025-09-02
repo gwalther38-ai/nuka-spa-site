@@ -103,38 +103,24 @@
 
 
 
-/* ===== HERO: 動画を黒帯なしで全面にフィット ===== */
+/* ===== HERO動画を21:9でそのまま表示 ===== */
 .hero{
   position: relative;
   width: 100%;
-  aspect-ratio: 21 / 9;      /* 元動画が21:9なのでこれで土台を作る */
-  max-height: 74vh;          /* 全画面にしたいなら削ってOK */
-  margin: 0;
+  aspect-ratio: 21 / 9;  /* コンテナを21:9に固定 */
   overflow: hidden;
-  background: #000;          /* 読み込み前のチラつき防止 */
-}
-
-/* iOS Safari 等、aspect-ratio 非対応向けフォールバック */
-@supports not (aspect-ratio: 1 / 1) {
-  .hero {
-    height: auto;
-  }
-  .hero::before{
-    content: "";
-    display: block;
-    padding-top: 42.857%;    /* 21:9 = 9/21 = 42.857% */
-  }
 }
 
 .hero video{
   position: absolute;
-  inset: 0;                  /* top:0; right:0; bottom:0; left:0; */
+  inset: 0;             /* top/right/bottom/left:0 の省略 */
   width: 100%;
   height: 100%;
-  object-fit: cover;          /* 黒帯を消して画面いっぱいに */
-  object-position: center;    /* 中央でトリミング */
+  object-fit: contain;  /* ← ここがポイント：拡大トリミングしない */
+  object-position: center;
   display: block;
 }
+
 
 
 
