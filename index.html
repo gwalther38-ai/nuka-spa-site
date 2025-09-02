@@ -104,12 +104,15 @@
 
 
 /* ===== HERO動画を21:9でそのまま表示 ===== */
-.hero{
+.hero {
   position: relative;
   width: 100%;
-  aspect-ratio: 21 / 9;  /* コンテナを21:9に固定 */
+  aspect-ratio: 21 / 9;  /* 21:9の比率を維持 */
   overflow: hidden;
+  margin: 0;             /* ← 念のため余白削除 */
+  padding: 0;            /* ← 念のため余白削除 */
 }
+
 
 .hero video{
   position: absolute;
