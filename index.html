@@ -115,20 +115,22 @@
 }
 
 
-
 .hero video {
-  position: absolute;
-  inset: 0;
-  width: 102%;   /* ← ほんの少し拡大して端をカット */
-  height: 100%;
-  object-fit: cover;  /* ← containではなくcoverで隙間を消す */
-  object-position: center;
+  /* 通常の設定 */
+  width: 100%;
+  height: auto;
   display: block;
+  object-fit: contain;
+  object-position: center;
 }
 
-
-
-
+/* スマホ幅のときだけ拡大 */
+@media (max-width: 768px){
+  .hero video {
+    transform: scale(1.10);
+    transform-origin: center center;
+  }
+}
 
   </style>
 </head>
