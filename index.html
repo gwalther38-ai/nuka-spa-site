@@ -132,6 +132,28 @@
     transform-origin: center center;
   }
 }
+/* === HERO: 余白なし・21:9でピッタリ === */
+.hero{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;     /* 21:9 の比率だけで高さを決める */
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important; /* 行間の余白対策 */
+  min-height: 0 !important;  /* 昔の min-height を打ち消す */
+  height: auto !important;   /* 念のため */
+}
+
+.hero video{
+  position: absolute;
+  inset: 0;                 /* top,right,bottom,left を 0 に */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* ラッパが 21:9 なのでトリミングは基本発生しない */
+  object-position: center;
+  display: block;
+}
 
   </style>
 </head>
