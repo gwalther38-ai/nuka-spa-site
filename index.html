@@ -107,11 +107,13 @@
 .hero {
   position: relative;
   width: 100%;
-  aspect-ratio: 21 / 9;  /* 21:9の比率を維持 */
+  aspect-ratio: 21 / 9;   /* 21:9の比率を維持 */
   overflow: hidden;
-  margin: 0;             /* ← 念のため余白削除 */
-  padding: 0;            /* ← 念のため余白削除 */
+  margin: 0;
+  padding: 0;
+  line-height: 0; /* ← 行間が余白になるケースを防ぐ */
 }
+
 
 
 .hero video {
